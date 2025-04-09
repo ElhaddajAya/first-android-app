@@ -1,37 +1,72 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/chat_background"
+    android:padding="8dp">
 
-    <EditText
-        android:id="@+id/messageInput"
-        android:layout_width="271dp"
-        android:layout_height="43dp"
-        android:layout_marginBottom="20dp"
-        android:hint="Votre message"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+    <!-- Liste des messages -->
+    <ListView
+        android:id="@+id/messageListView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="8dp"
+        android:padding="8dp" />
 
-    <Button
-        android:id="@+id/sendButton"
-        android:layout_width="wrap_content"
+    <!-- Image capturée -->
+    <ImageView
+        android:id="@+id/capturedImageView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginBottom="8dp"
+        android:scaleType="centerCrop"
+        android:contentDescription="Image capturée"
+        android:visibility="gone" />
+
+    <!-- Zone de saisie et bouton de caméra -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="758dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="20dp"
-        android:text="Envoyer"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/messageInput"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        android:orientation="horizontal"
+        android:background="@color/input_background"
+        android:padding="8dp"
+        android:gravity="center_vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- Bouton de caméra -->
+        <ImageButton
+            android:id="@+id/cameraButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Ouvrir la caméra"
+            android:src="@android:drawable/ic_menu_camera"/>
+
+        <!-- Champ de saisie -->
+        <EditText
+            android:id="@+id/messageInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Écrire un message..."
+            android:background="@android:drawable/edit_text"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <!-- Bouton d'envoi -->
+        <ImageButton
+            android:id="@+id/sendButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Envoyer un message"
+            android:src="@android:drawable/ic_menu_send"
+            android:tint="@color/icon_tint" />
+
+    </LinearLayout>
+</LinearLayout>

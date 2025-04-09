@@ -48,12 +48,5 @@ public class PersonneDetailsActivity extends AppCompatActivity {
             messageIntent.putExtra("personne_name", nom);
             startActivity(messageIntent);
         });
-
-        // Bouton pour ouvrir la caméra
-        Button cameraButton = findViewById(R.id.cameraButton);
-        cameraButton.setOnClickListener(v -> {
-            Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivity(cameraIntent);
-        });
     }
 }

@@ -8,4 +8,7 @@
     <color name="search_opaque">#ffaa3f</color>
     <color name="selected_background">#ffaa3f</color>
     <color name="default_background">#3d3d3d</color>
+    <color name="chat_background">#F5F5F5</color>
+    <color name="input_background">#FFFFFF</color>
+    <color name="icon_tint">#808080</color>
 </resources>

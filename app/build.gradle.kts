@@ -45,7 +45,7 @@ dependencies {
     annotationProcessor("androidx.room:room-compiler:2.5.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
-    implementation("com.google.android.material:material:1.4.0")
+    implementation("com.google.android.material:material:1.9.0")
     //androidTestImp8lementation(libs.espresso.core)
 
 
