@@ -25,6 +25,7 @@ public class MessageActivity extends AppCompatActivity {
     private ArrayList<String> messages = new ArrayList<>();
     private MessageAdapter adapter;
     private ImageView capturedImageView; // Pour afficher l'image capturée
+    private Bitmap capturedImageBitmap; // Pour stocker l'image capturée
 
     private ActivityResultLauncher<Intent> cameraLauncher;
 
@@ -50,8 +51,9 @@ public class MessageActivity extends AppCompatActivity {
             result -> {
                 if (result.getResultCode() == RESULT_OK && result.getData() != null) {
                     Bundle extras = result.getData().getExtras();
-                    Bitmap imageBitmap = (Bitmap) extras.get("data");
-                    capturedImageView.setImageBitmap(imageBitmap); // Afficher l'image capturée
+                    capturedImageBitmap = (Bitmap) extras.get("data"); // Stocker l'image capturée
+                    capturedImageView.setVisibility(View.VISIBLE); // Rendre l'ImageView visible
+                    capturedImageView.setImageBitmap(capturedImageBitmap); // Afficher l'image capturée
                 } else {
                     Toast.makeText(this, "Capture annulée", Toast.LENGTH_SHORT).show();
                 }
@@ -76,12 +78,22 @@ public class MessageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String message = messageInput.getText().toString().trim();
-                if (!message.isEmpty()) {
-                    messages.add(message);
-                    adapter.notifyDataSetChanged();
-                    messageInput.setText(""); // Effacer le champ de saisie
+
+                if (!message.isEmpty() || capturedImageBitmap != null) {
+                    // Ajouter le message et l'image à la liste des messages
+                    if (!message.isEmpty()) {
+                        messages.add("Message: " + message);
+                    }
+                    if (capturedImageBitmap != null) {
+                        messages.add("Image envoyée"); // Vous pouvez gérer l'affichage de l'image différemment
+                        capturedImageBitmap = null; // Réinitialiser après l'envoi
+                        capturedImageView.setVisibility(View.GONE); // Masquer l'aperçu
+                    }
+
+                    adapter.notifyDataSetChanged(); // Mettre à jour la liste
+                    messagegInput.setText(""); // Effacer le champ de saisie
                 } else {
-                    Toast.makeText(MessageActivity.this, "Veuillez écrire un message", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MessageActivity.this, "Veuillez écrire un message ou capturer une image", Toast.LENGTH_SHORT).show();
                 }
             }
         });
