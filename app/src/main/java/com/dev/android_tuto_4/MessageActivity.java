@@ -91,7 +91,7 @@ public class MessageActivity extends AppCompatActivity {
                     }
 
                     adapter.notifyDataSetChanged(); // Mettre à jour la liste
-                    messagegInput.setText(""); // Effacer le champ de saisie
+                    messageInput.setText(""); // Effacer le champ de saisie
                 } else {
                     Toast.makeText(MessageActivity.this, "Veuillez écrire un message ou capturer une image", Toast.LENGTH_SHORT).show();
                 }
