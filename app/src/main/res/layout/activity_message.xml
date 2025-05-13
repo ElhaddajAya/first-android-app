@@ -65,8 +65,7 @@
             android:layout_marginStart="8dp"
             android:background="@android:color/transparent"
             android:contentDescription="Envoyer un message"
-            android:src="@android:drawable/ic_menu_send"
-            android:tint="@color/icon_tint" />
+            android:src="@android:drawable/ic_menu_send" />
 
     </LinearLayout>
 </LinearLayout>

@@ -10,6 +10,9 @@ import android.widget.SimpleCursorAdapter;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import android.widget.AdapterView;
+import android.widget.Toast;
+import androidx.fragment.app.FragmentTransaction;
 
 public class HomeActivity extends AppCompatActivity {
     ListView listView;
@@ -45,5 +48,14 @@ public class HomeActivity extends AppCompatActivity {
                 0
         );
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            // Afficher le fragment avec les détails
+            DetailFragment fragment = DetailFragment.newInstance(id);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.detailContainer, fragment)
+                    .commit();
+        });
     }
 }

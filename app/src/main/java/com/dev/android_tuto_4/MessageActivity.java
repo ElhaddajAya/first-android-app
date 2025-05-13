@@ -47,17 +47,17 @@ public class MessageActivity extends AppCompatActivity {
 
         // Initialiser le launcher pour la caméra
         cameraLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            result -> {
-                if (result.getResultCode() == RESULT_OK && result.getData() != null) {
-                    Bundle extras = result.getData().getExtras();
-                    capturedImageBitmap = (Bitmap) extras.get("data"); // Stocker l'image capturée
-                    capturedImageView.setVisibility(View.VISIBLE); // Rendre l'ImageView visible
-                    capturedImageView.setImageBitmap(capturedImageBitmap); // Afficher l'image capturée
-                } else {
-                    Toast.makeText(this, "Capture annulée", Toast.LENGTH_SHORT).show();
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        Bundle extras = result.getData().getExtras();
+                        capturedImageBitmap = (Bitmap) extras.get("data"); // Stocker l'image capturée
+                        capturedImageView.setVisibility(View.VISIBLE); // Rendre l'ImageView visible
+                        capturedImageView.setImageBitmap(capturedImageBitmap); // Afficher l'image capturée
+                    } else {
+                        Toast.makeText(this, "Capture annulée", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
         );
 
         // Gérer le clic sur le bouton de la caméra
@@ -82,7 +82,7 @@ public class MessageActivity extends AppCompatActivity {
                 if (!message.isEmpty() || capturedImageBitmap != null) {
                     // Ajouter le message et l'image à la liste des messages
                     if (!message.isEmpty()) {
-                        messages.add("Message: " + message);
+                        messages.add(message);
                     }
                     if (capturedImageBitmap != null) {
                         messages.add("Image envoyée"); // Vous pouvez gérer l'affichage de l'image différemment
